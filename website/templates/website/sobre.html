@@ -1,0 +1,248 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-header">
+  <div class="container position-relative">
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <span class="badge rounded-pill mb-3 px-3 py-2" style="background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;letter-spacing:.06em;">
+          <i class="bi bi-info-circle me-1"></i>Sobre o projeto
+        </span>
+        <h1 class="display-5 fw-semibold text-white mb-3">
+          SorriSys<em style="color:#5BC8F5;">.</em><br>Sistema de Gestão Odontológica
+        </h1>
+        <p class="text-white-50 mb-0" style="font-size:1rem;font-weight:300;">
+          Conheça a proposta, os diagramas e a estrutura do sistema
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-white" id="descricao">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <span class="section-label">O que é o projeto</span>
+        <h2 class="mt-2 mb-4">Sistema de gestão odontológica<br><em class="text-primary">baseado em ficha clínica real</em></h2>
+
+        <p class="text-muted mb-3">
+          O <strong>SorriSys Digital</strong> é um sistema de gestão odontológica desenvolvido com base na ficha clínica física de um <strong>Consultório Odontológico</strong>.
+        </p>
+        <p class="text-muted mb-3">
+          O objetivo do projeto é digitalizar e organizar todo o fluxo de atendimento de uma clínica odontológica, desde o cadastro do paciente até a assinatura do contrato de tratamento. Cada módulo do sistema corresponde diretamente a uma seção da ficha clínica original.
+        </p>
+        <p class="text-muted mb-4">
+          O sistema permite que o dentista cadastre pacientes com dados completos, registre a anamnese de saúde bucal e geral, elabore e aprove planos de tratamento com orçamento detalhado por dente, registre cada procedimento realizado com data e forma de pagamento, e gere os documentos legais — termo de atendimento e contrato odontológico — para assinatura do paciente.
+        </p>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-primary-subtle text-primary"><i class="bi bi-person-vcard"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Cadastro de pacientes</div>
+                  <p class="text-muted small mb-0">Nome, CPF, RG, endereço completo, contatos e indicação — fiel à ficha clínica.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-warning-subtle text-warning"><i class="bi bi-clipboard2-pulse"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Anamnese</div>
+                  <p class="text-muted small mb-0">Saúde bucal e geral com alertas automáticos para condições clínicas relevantes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-success-subtle text-success"><i class="bi bi-list-check"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Plano de tratamento</div>
+                  <p class="text-muted small mb-0">Procedimentos por dente, valores e status de aprovação do orçamento.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-info-subtle text-info"><i class="bi bi-journal-medical"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Histórico de tratamentos</div>
+                  <p class="text-muted small mb-0">Registro de cada sessão com data, procedimento, valor e forma de pagamento.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-danger-subtle text-danger"><i class="bi bi-file-earmark-lock"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Termo e contrato</div>
+                  <p class="text-muted small mb-0">Documentos legais digitalizados com assinaturas do paciente, consultório e testemunhas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="icon-box bg-secondary-subtle text-secondary"><i class="bi bi-stack"></i></div>
+                <div>
+                  <div class="fw-semibold mb-1">Tecnologias</div>
+                  <p class="text-muted small mb-0">Django · Bootstrap 5 ·  Python</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5" style="background:var(--bs-light);" id="caso-uso">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <div class="text-center mb-4">
+          <span class="section-label">Diagrama de caso de uso</span>
+          <h2 class="mt-2">Funcionalidades e <em class="text-primary">atores do sistema</em></h2>
+          <p class="text-muted">Representa as interações entre os atores — Dentista e Paciente — e as funcionalidades disponíveis no sistema.</p>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-header card-header-primary d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-diagram-3 me-2"></i>Diagrama de Caso de Uso — SorriSys</span>
+            <span class="badge bg-white text-primary fw-semibold">UML</span>
+          </div>
+          <div class="card-body text-center p-4">
+            <img
+              src="{% static 'img/caso_uso.png' %}"
+              alt="Diagrama de Caso de Uso do Sistema SorriSys"
+              class="img-fluid rounded-2"
+              style="max-height:520px;border:1px solid rgba(26,107,114,.1);"
+            />
+          </div>
+          <div class="card-footer bg-transparent">
+            <div class="row g-3 text-center">
+              <div class="col-6 col-md-3">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-primary rounded-pill px-3">Dentista</span>
+                  <small class="text-muted">6 casos de uso</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-success rounded-pill px-3">Paciente</span>
+                  <small class="text-muted">3 casos de uso</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <i class="bi bi-person-badge text-primary"></i>
+                  <small class="text-muted">2 atores</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <i class="bi bi-circle text-info"></i>
+                  <small class="text-muted">9 casos de uso</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5 bg-white" id="classes">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <div class="text-center mb-4">
+          <span class="section-label">Diagrama de classes</span>
+          <h2 class="mt-2">Estrutura e <em class="text-primary">relacionamentos do sistema</em></h2>
+          <p class="text-muted">Representa as 7 classes do sistema, seus atributos, métodos e como se relacionam entre si.</p>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-header card-header-primary d-flex justify-content-between align-items-center">
+            <span><i class="bi bi-diagram-2 me-2"></i>Diagrama de Classes — SorriSys</span>
+            <span class="badge bg-white text-primary fw-semibold">UML</span>
+          </div>
+          <div class="card-body text-center p-4">
+            <img
+              src="{% static 'img/classes.png' %}"
+              alt="Diagrama de Classes do Sistema SorriSys"
+              class="img-fluid rounded-2"
+              style="max-height:600px;border:1px solid rgba(26,107,114,.1);"
+            />
+          </div>
+          <div class="card-footer bg-transparent">
+            <div class="row g-3 text-center">
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-primary rounded-pill px-3">Paciente</span>
+                  <small class="text-muted">17 atributos</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-warning rounded-pill px-3">Anamnese</span>
+                  <small class="text-muted">30 atributos</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-success rounded-pill px-3">PlanoTratamento</span>
+                  <small class="text-muted">4 atributos</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-info rounded-pill px-3">ItemPlano</span>
+                  <small class="text-muted">4 atributos</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-danger rounded-pill px-3">TratamentoRealizado</span>
+                  <small class="text-muted">6 atributos</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-4">
+                <div class="d-flex align-items-center gap-2 justify-content-center">
+                  <span class="badge bg-secondary rounded-pill px-3">Termo + Contrato</span>
+                  <small class="text-muted">2 classes</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

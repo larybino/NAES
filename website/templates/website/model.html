@@ -1,13 +1,117 @@
+{% extends "website/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>NAES</title>
-</head>
-<body>
-    <h1>Oieee</h1>
-</body>
-</html>
+
+{% block title %}Início{% endblock %}
+
+{% block nav_inicio %}active{% endblock %}
+
+{% block content %}
+
+<section class="hero-section d-flex align-items-center" id="inicio">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge rounded-pill mb-3 px-3 py-2" style="background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;letter-spacing:.06em;">
+          <i class="bi bi-shield-check me-1"></i>Ficha clínica 100% digital
+        </span>
+        <h1 class="display-4 fw-semibold text-white mb-4">
+          A ficha clínica de um<br><em style="color:#5BC8F5;">consultório odontológico</em><br>no digital
+        </h1>
+        <p class="lead mb-4 text-white-50" style="font-weight:300;font-size:1rem;">
+          Cadastro completo do paciente, anamnese de saúde bucal e geral, plano de tratamento, histórico de procedimentos realizados e documentos com assinatura — tudo em um só sistema.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mb-5">
+          <a href="#" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
+            <i class="bi bi-person-plus me-2"></i>Nova ficha clínica
+          </a>
+          <a href="{% url 'sobre' %}" class="btn btn-outline-light btn-lg px-4">
+            <i class="bi bi-info-circle me-2"></i>Sobre o projeto
+          </a>
+        </div>
+        <div class="row g-3">
+          <div class="col-4">
+            <div class="text-center p-3 rounded-3" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)">
+              <div class="fw-bold text-white fs-3" style="font-family:'Lora',serif;">5</div>
+              <div class="text-white-50 small">Páginas da ficha</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="text-center p-3 rounded-3" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)">
+              <div class="fw-bold text-white fs-3" style="font-family:'Lora',serif;">100%</div>
+              <div class="text-white-50 small">Digital e seguro</div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="text-center p-3 rounded-3" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)">
+              <div class="fw-bold text-white fs-3" style="font-family:'Lora',serif;">∞</div>
+              <div class="text-white-50 small">Histórico clínico</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-preview">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <div class="text-white-50 small">Ficha clínica digital</div>
+              <div class="text-white fw-semibold" style="font-family:'Lora',serif;">Consultório Odontológico</div>
+            </div>
+            <span class="badge bg-success rounded-pill px-3"><i class="bi bi-check2 me-1"></i>Preenchida</span>
+          </div>
+          <span class="section-divider" style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);border-radius:4px;padding:.3rem .75rem;margin:.75rem 0 .5rem;display:inline-block;">Dados pessoais</span>
+          <div class="row g-2 mb-1">
+            <div class="col-8"><div class="form-label" style="color:rgba(255,255,255,.6);font-size:.75rem;margin-bottom:.25rem;">Nome</div><div style="color:#fff;font-size:.875rem;font-weight:500;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.12);">Maria Aparecida Santos</div></div>
+            <div class="col-4"><div class="form-label" style="color:rgba(255,255,255,.6);font-size:.75rem;margin-bottom:.25rem;">Nascimento</div><div style="color:#fff;font-size:.875rem;font-weight:500;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.12);">12/05/1990</div></div>
+          </div>
+          <div class="row g-2 mb-2">
+            <div class="col-6"><div class="form-label" style="color:rgba(255,255,255,.6);font-size:.75rem;margin-bottom:.25rem;">CPF</div><div style="color:#fff;font-size:.875rem;font-weight:500;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.12);">123.456.789-00</div></div>
+            <div class="col-6"><div class="form-label" style="color:rgba(255,255,255,.6);font-size:.75rem;margin-bottom:.25rem;">WhatsApp</div><div style="color:#fff;font-size:.875rem;font-weight:500;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.12);">(71) 99999-0000</div></div>
+          </div>
+          <span class="section-divider" style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);border-radius:4px;padding:.3rem .75rem;margin:.75rem 0 .5rem;display:inline-block;">Anamnese</span>
+          <div class="d-flex gap-2 flex-wrap mt-1">
+            <span class="badge bg-warning rounded-pill">Sensibilidade ao frio</span>
+            <span class="badge bg-danger rounded-pill">Bruxismo</span>
+            <span class="badge bg-success rounded-pill">Sem alergias</span>
+          </div>
+          <span class="section-divider mt-2" style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);border-radius:4px;padding:.3rem .75rem;margin:.75rem 0 .5rem;display:inline-block;">Plano de tratamento</span>
+          <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:rgba(255,255,255,.1)!important;font-size:.8rem;">
+            <span class="text-white">Canal — dente 27</span>
+            <span style="color:#5BC8F5;font-weight:600;">R$ 850,00</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center py-1 border-bottom" style="border-color:rgba(255,255,255,.1)!important;font-size:.8rem;">
+            <span class="text-white">Restauração — dente 24</span>
+            <span style="color:#5BC8F5;font-weight:600;">R$ 320,00</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-2">
+            <span class="text-white-50 small">Total aprovado</span>
+            <span class="text-white fw-bold">R$ 1.170,00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section py-5 text-center">
+  <div class="container py-3">
+    <span class="badge rounded-pill mb-3 px-3 py-2" style="background:rgba(255,255,255,.15);color:#fff;font-size:.78rem;letter-spacing:.06em;">
+      <i class="bi bi-rocket-takeoff me-1"></i>Comece agora
+    </span>
+    <h2 class="display-5 fw-semibold text-white mb-3">
+      Digitalize a ficha clínica<br><em style="color:#5BC8F5;">da sua clínica</em>
+    </h2>
+    <p class="text-white-50 mb-4 mx-auto" style="max-width:480px;font-weight:300;">
+      Cadastro, anamnese, plano de tratamento, histórico e contratos — toda a ficha SorriSys em formato digital, acessível e seguro.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="#" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
+        <i class="bi bi-person-plus me-2"></i>Criar conta grátis
+      </a>
+      <a href="{% url 'sobre' %}" class="btn btn-outline-light btn-lg px-4">
+        <i class="bi bi-info-circle me-2"></i>Saiba mais
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
