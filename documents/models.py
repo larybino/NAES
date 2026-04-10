@@ -4,16 +4,17 @@ from pacients.models import Patient
 
 class TermsOfService(models.Model):
     patient = models.ForeignKey(
-        Patient, on_delete=models.CASCADE, related_name="attendance_term"
+        Patient, on_delete=models.CASCADE, related_name="attendance_term",
+        verbose_name="Paciente"
     )
-    signature_date = models.DateField(null=True, blank=True)
-    location = models.CharField(max_length=100)
-    accepts_plan = models.BooleanField(default=False)
-    aware_of_changes = models.BooleanField(default=False)
-    aware_of_withdrawal = models.BooleanField(default=False)
-    authorizes_prosthesis = models.BooleanField(default=False)
-    declares_truthfulness = models.BooleanField(default=False)
-    patient_signature = models.CharField(max_length=200)
+    signature_date = models.DateField("Data da Assinatura", null=True, blank=True)
+    location = models.CharField("Local", max_length=100)
+    accepts_plan = models.BooleanField("Aceita o Plano?", default=False)
+    aware_of_changes = models.BooleanField("Ciente das Alterações?", default=False)
+    aware_of_withdrawal = models.BooleanField("Ciente da Desistência?", default=False)
+    authorizes_prosthesis = models.BooleanField("Autoriza Prótese?", default=False)
+    declares_truthfulness = models.BooleanField("Declara Veracidade?", default=False)
+    patient_signature = models.CharField("Assinatura do Paciente", max_length=200)
 
     def sign(self):
         from django.utils import timezone
@@ -30,14 +31,15 @@ class TermsOfService(models.Model):
 
 class Contract(models.Model):
     patient = models.ForeignKey(
-        Patient, on_delete=models.CASCADE, related_name="contract"
+        Patient, on_delete=models.CASCADE, related_name="contract",
+        verbose_name="Paciente"
     )
-    signature_date = models.DateField(null=True, blank=True)
-    location = models.CharField(max_length=100)
-    patient_signature = models.CharField(max_length=200, blank=True)
-    clinic_signature = models.CharField(max_length=200, blank=True)
-    witness1_signature = models.CharField(max_length=200, blank=True)
-    witness2_signature = models.CharField(max_length=200, blank=True)
+    signature_date = models.DateField("Data da Assinatura", null=True, blank=True)
+    location = models.CharField("Local", max_length=100)
+    patient_signature = models.CharField("Assinatura do Paciente", max_length=200, blank=True)
+    clinic_signature = models.CharField("Assinatura do Consultório", max_length=200, blank=True)
+    witness1_signature = models.CharField("Assinatura da Testemunha 1", max_length=200, blank=True)
+    witness2_signature = models.CharField("Assinatura da Testemunha 2", max_length=200, blank=True)
 
     def sign(self):
         from django.utils import timezone

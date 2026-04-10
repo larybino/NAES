@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Contract, TermsOfService
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
 # Create your views here.
 
 class TermsOfServiceCreateView(CreateView):
@@ -32,6 +32,11 @@ class TermsOfServiceListView(ListView):
     model = TermsOfService
     template_name = 'documents/list.html'
 
+class TermsOfServiceDeleteView(DeleteView):
+    model = TermsOfService
+    template_name = 'documents/confirm_delete.html'
+    success_url = reverse_lazy('index')
+
 class ContractCreateView(CreateView):
     model = Contract
     fields = '__all__'
@@ -59,3 +64,8 @@ class ContractDetailView(DetailView):
 class ContractListView(ListView):
     model = Contract
     template_name = 'documents/list.html'
+
+class ContractDeleteView(DeleteView):
+    model = Contract
+    template_name = 'documents/confirm_delete.html'
+    success_url = reverse_lazy('index')

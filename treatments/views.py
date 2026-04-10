@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import TreatmentPerformed, TreatmentPlan, PlanItem
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
 
 class TreatmentPlanCreateView(CreateView):
     model = TreatmentPlan
@@ -31,6 +31,11 @@ class TreatmentPlanListView(ListView):
     model = TreatmentPlan
     template_name = 'treatments/list.html'
 
+class TreatmentPlanDeleteView(DeleteView):
+    model = TreatmentPlan
+    template_name = 'treatments/form.html'
+    success_url = reverse_lazy('index')
+
 class TreatmentPerformedCreateView(CreateView):
     model = TreatmentPerformed
     fields = '__all__'
@@ -59,6 +64,11 @@ class TreatmentPerformedListView(ListView):
     model = TreatmentPerformed
     template_name = 'treatments/list.html'
 
+class TreatmentPerformedDeleteView(DeleteView):
+    model = TreatmentPerformed
+    template_name = 'treatments/confirm_delete.html'
+    success_url = reverse_lazy('index')
+    
 class PlanItemCreateView(CreateView):
     model = PlanItem
     fields = '__all__'
@@ -86,3 +96,8 @@ class PlanItemDetailView(DetailView):
 class PlanItemListView(ListView):
     model = PlanItem
     template_name = 'treatments/list.html'
+
+class PlanItemDeleteView(DeleteView):
+    model = PlanItem
+    template_name = 'treatments/confirm_delete.html'
+    success_url = reverse_lazy('index')
