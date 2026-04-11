@@ -26,13 +26,13 @@ class PatientUpdateView(UpdateView):
 
 class PatientDetailView(DetailView):
     model = Patient
-    template_name = 'pacients/detail/patient.html'
+    template_name = 'pacients/detail/patients.html'
     extra_context = {
         'title': 'Detalhes do Paciente'}
 
 class PatientListView(ListView):
     model = Patient
-    template_name = 'pacients/list/list.html'
+    template_name = 'pacients/list/patients.html'
     extra_context = {
         'title': 'Lista de Pacientes'}
 
@@ -70,7 +70,7 @@ class AnamneseDetailView(DetailView):
 
 class AnamneseListView(ListView):
     model = Anamnese
-    template_name = 'pacients/list.html'
+    template_name = 'pacients/list/anamnese.html'
     extra_context = {
         'title': 'Lista de Anamneses'}
 

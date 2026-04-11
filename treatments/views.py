@@ -25,13 +25,13 @@ class TreatmentPlanUpdateView(UpdateView):
     
 class TreatmentPlanDetailView(DetailView):
     model = TreatmentPlan
-    template_name = 'treatments/detail.html'   
+    template_name = 'treatments/detail/treatmentplan.html'   
     extra_context = {
         'title': 'Detalhes do Plano de Tratamento'}
 
 class TreatmentPlanListView(ListView):
     model = TreatmentPlan
-    template_name = 'treatments/list.html'
+    template_name = 'treatments/list/treatmentplan.html'
     extra_context = {
         'title': 'Lista de Planos de Tratamento'}
 
@@ -62,13 +62,13 @@ class TreatmentPerformedUpdateView(UpdateView):
 
 class TreatmentPerformedDetailView(DetailView):
     model = TreatmentPerformed
-    template_name = 'treatments/detail.html'
+    template_name = 'treatments/detail/treatmentperfomed.html'
     extra_context = {
         'title': 'Detalhes do Tratamento Realizado'}
 
 class TreatmentPerformedListView(ListView):
     model = TreatmentPerformed
-    template_name = 'treatments/list.html'
+    template_name = 'treatments/list/treatmentperfomed.html'
     extra_context = {
         'title': 'Lista de Tratamentos Realizados'}
 
@@ -99,13 +99,13 @@ class PlanItemUpdateView(UpdateView):
     
 class PlanItemDetailView(DetailView):
     model = PlanItem
-    template_name = 'treatments/detail.html'
+    template_name = 'treatments/detail/planitem.html'
     extra_context = {
         'title': 'Detalhes do Item do Plano'}
 
 class PlanItemListView(ListView):
     model = PlanItem
-    template_name = 'treatments/list.html'
+    template_name = 'treatments/list/planitem.html'
     extra_context = {
         'title': 'Lista de Itens do Plano'
     }

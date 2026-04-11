@@ -145,12 +145,12 @@
           </a>
           <ul class="dropdown-menu">
             <li><span class="dropdown-header">Cadastro</span></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-person-plus me-2"></i>Novo paciente</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-search me-2"></i>Buscar paciente</a></li>
+            <li><a class="dropdown-item" href="{% url 'cadastrar_paciente' %}"><i class="bi bi-person-plus me-2"></i>Novo paciente</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_pacientes' %}"><i class="bi bi-search me-2"></i>Buscar paciente</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><span class="dropdown-header">Ficha clínica</span></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-clipboard2-pulse me-2"></i>Anamnese</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text me-2"></i>Termo e contrato</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_anamneses' %}"><i class="bi bi-clipboard2-pulse me-2"></i>Anamnese</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_termos_de_consentimento' %}"><i class="bi bi-file-earmark-text me-2"></i>Termo e contrato</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -159,12 +159,12 @@
           </a>
           <ul class="dropdown-menu">
             <li><span class="dropdown-header">Planejamento</span></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-list-check me-2"></i>Plano de tratamento</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_planos_de_tratamento' %}"><i class="bi bi-list-check me-2"></i>Plano de tratamento</a></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Orçamento</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><span class="dropdown-header">Execução</span></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-journal-medical me-2"></i>Histórico realizado</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle me-2"></i>Registrar procedimento</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_tratamentos_realizados' %}"><i class="bi bi-journal-medical me-2"></i>Histórico realizado</a></li>
+            <li><a class="dropdown-item" href="{% url 'cadastrar_tratamento_realizado' %}"><i class="bi bi-plus-circle me-2"></i>Registrar procedimento</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -172,8 +172,8 @@
             <i class="bi bi-file-earmark-text me-1"></i>Documentos
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="bi bi-pen me-2"></i>Termo de atendimento</a></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-lock me-2"></i>Contrato odontológico</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_termos_de_consentimento' %}"><i class="bi bi-pen me-2"></i>Termo de atendimento</a></li>
+            <li><a class="dropdown-item" href="{% url 'listar_contratos' %}"><i class="bi bi-file-earmark-lock me-2"></i>Contrato odontológico</a></li>
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-printer me-2"></i>Imprimir ficha</a></li>
           </ul>

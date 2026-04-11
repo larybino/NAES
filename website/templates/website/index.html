@@ -21,7 +21,7 @@
           Cadastro completo do paciente, anamnese de saúde bucal e geral, plano de tratamento, histórico de procedimentos realizados e documentos com assinatura — tudo em um só sistema.
         </p>
         <div class="d-flex flex-wrap gap-3 mb-5">
-          <a href="#" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
+          <a href="{% url 'cadastrar_paciente' %}" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
             <i class="bi bi-person-plus me-2"></i>Nova ficha clínica
           </a>
           <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg px-4">
@@ -104,7 +104,7 @@
       Cadastro, anamnese, plano de tratamento, histórico e contratos — toda a ficha SorriSys em formato digital, acessível e seguro.
     </p>
     <div class="d-flex flex-wrap justify-content-center gap-3">
-      <a href="#" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
+      <a href="{% url 'cadastrar_paciente' %}" class="btn btn-light btn-lg fw-semibold px-4" style="color:var(--bs-primary);">
         <i class="bi bi-person-plus me-2"></i>Criar conta grátis
       </a>
       <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg px-4">

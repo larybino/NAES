@@ -9,7 +9,7 @@
     <h3 class="text-center border-bottom pb-2 mb-4">
       {{ title }}
       <span class="float-end">
-        <a href="{% url 'pacients-create' %}" class="btn btn-success btn-sm">
+        <a href="{% url 'cadastrar_paciente' %}" class="btn btn-success btn-sm">
           <i class="bi bi-plus-lg"></i>
         </a>
       </span>
@@ -36,15 +36,15 @@
                     <i class="bi bi-three-dots-vertical"></i>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'pacients-detail' patient.pk %}">
+                    <li><a class="dropdown-item" href="{% url 'detalhes_paciente' patient.pk %}">
                       <i class="bi bi-zoom-in me-2"></i>
                       View
                     </a></li>
-                    <li><a class="dropdown-item" href="{% url 'pacients-update' patient.pk %}">
+                    <li><a class="dropdown-item" href="{% url 'editar_paciente' patient.pk %}">
                       <i class="bi bi-pencil-square text-primary me-2"></i>
                       Edit
                     </a></li>
-                    <li><a class="dropdown-item" href="{% url 'pacients-delete' patient.pk %}">
+                    <li><a class="dropdown-item" href="{% url 'deletar_paciente' patient.pk %}">
                       <i class="bi bi-trash text-danger me-2"></i>
                       Delete
                     </a></li>

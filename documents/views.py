@@ -26,13 +26,13 @@ class TermsOfServiceUpdateView(UpdateView):
     
 class TermsOfServiceDetailView(DetailView):
     model = TermsOfService
-    template_name = 'documents/detail.html'
+    template_name = 'documents/detail/termofservice.html'
     extra_context = {
         'title': 'Detalhes do Termo de Atendimento'}
 
 class TermsOfServiceListView(ListView):
     model = TermsOfService
-    template_name = 'documents/list.html'
+    template_name = 'documents/list/termofservice.html'
     extra_context = {
         'title': 'Lista de Termos de Atendimento'}
 
@@ -63,13 +63,13 @@ class ContractUpdateView(UpdateView):
     
 class ContractDetailView(DetailView):
     model = Contract
-    template_name = 'documents/detail.html'
+    template_name = 'documents/detail/contract.html'
     extra_context = {
         'title': 'Detalhes do Contrato'}
 
 class ContractListView(ListView):
     model = Contract
-    template_name = 'documents/list.html'
+    template_name = 'documents/list/contract.html'
     extra_context = {
         'title': 'Lista de Contratos'
     }
