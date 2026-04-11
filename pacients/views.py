@@ -8,7 +8,7 @@ class PatientCreateView(CreateView):
     model = Patient
     fields = '__all__'
     template_name = 'pacients/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_pacientes')
     extra_context = {
         'title': 'Novo Paciente',
         'button': 'Criar Paciente'
@@ -18,7 +18,7 @@ class PatientUpdateView(UpdateView):
     model = Patient
     fields = '__all__'
     template_name = 'pacients/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_pacientes')
     extra_context = {
         'title': 'Editar Paciente',
         'button': 'Atualizar Paciente'
@@ -26,22 +26,26 @@ class PatientUpdateView(UpdateView):
 
 class PatientDetailView(DetailView):
     model = Patient
-    template_name = 'pacients/detail.html'
+    template_name = 'pacients/detail/patient.html'
+    extra_context = {
+        'title': 'Detalhes do Paciente'}
 
 class PatientListView(ListView):
     model = Patient
-    template_name = 'pacients/list.html'
+    template_name = 'pacients/list/list.html'
+    extra_context = {
+        'title': 'Lista de Pacientes'}
 
 class PatientDeleteView(DeleteView):
     model = Patient
     template_name = 'pacients/confirm_delete.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_pacientes')
 
 class AnamneseCreateView(CreateView):
     model = Anamnese
     fields = '__all__'
     template_name = 'pacients/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_anamneses')
     extra_context = {
         'title': 'Nova Anamnese',
         'button': 'Criar Anamnese'
@@ -51,7 +55,7 @@ class AnamneseUpdateView(UpdateView):
     model = Anamnese
     fields = '__all__'
     template_name = 'pacients/form.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_anamneses')
     extra_context = {
         'title': 'Editar Anamnese',
         'button': 'Atualizar Anamnese'
@@ -59,14 +63,18 @@ class AnamneseUpdateView(UpdateView):
 
 class AnamneseDetailView(DetailView):
     model = Anamnese
-    template_name = 'pacients/detail.html'
+    template_name = 'pacients/detail/anamnese.html'
+    extra_context = {
+        'title': 'Detalhes da Anamnese'}
 
 
 class AnamneseListView(ListView):
     model = Anamnese
     template_name = 'pacients/list.html'
+    extra_context = {
+        'title': 'Lista de Anamneses'}
 
 class AnamneseDeleteView(DeleteView):
     model = Anamnese
     template_name = 'pacients/confirm_delete.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('listar_anamneses')
