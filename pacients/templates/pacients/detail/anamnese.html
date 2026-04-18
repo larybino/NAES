@@ -12,17 +12,42 @@
       <div class="col-md-8 col-lg-7">
         <div class="card shadow-sm">
           <div class="card-body">
-            <p class="mb-0 fs-5"><strong>{{ object.nome }}</strong></p>
-            <hr>
-            <p class="mb-2"><strong>Patient:</strong> {{ object.patient.nome }}</p>
-            <p class="mb-2"><strong>Date:</strong> {{ object.date|date:"d/m/Y" }}</p>
-            <p class="mb-2"><strong>Registered by:</strong> {{ object.created_by.username }}</p>
-            <p class="text-muted mb-0">ID: {{ object.pk }}</p>
+            <p class="mb-2"><strong>ID:</strong> {{ object.pk }}</p>
+            <p class="mb-2"><strong>Paciente:</strong> {{ object.patient.name }}</p>
+            <p class="mb-2"><strong>Escovações por dia:</strong> {{ object.brushings_per_day }}</p>
+            <p class="mb-2"><strong>Escovação orientada:</strong> {% if object.guided_brushing %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Usa fio dental:</strong> {% if object.uses_floss %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Fio dental por dia:</strong> {{ object.floss_per_day }}</p>
+            <p class="mb-2"><strong>Gengiva inflama/sangra:</strong> {% if object.gum_inflammation %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Sensibilidade à temperatura:</strong> {% if object.temperature_sensitivity %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Sensibilidade ao doce:</strong> {% if object.sweet_sensitivity %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Mobilidade dentária:</strong> {% if object.tooth_mobility %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Dor na ATM:</strong> {% if object.tmj_pain %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Estalos na mandíbula:</strong> {% if object.jaw_clicking %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Bruxismo:</strong> {% if object.bruxism %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Respira pelo nariz:</strong> {% if object.nasal_breathing %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Ingere muito doce:</strong> {% if object.high_sugar_intake %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Hábito de café/refrigerante:</strong> {% if object.coffee_soda_habit %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Última consulta odontológica:</strong> {{ object.last_dental_visit|date:"d/m/Y" }}</p>
+            <p class="mb-2"><strong>Completou o último tratamento?</strong> {% if object.completed_last_treatment %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Em tratamento médico?</strong> {% if object.under_medical_treatment %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Doenças preexistentes:</strong> {{ object.preexisting_conditions }}</p>
+            <p class="mb-2"><strong>Usa medicamentos?</strong> {% if object.uses_medication %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Quais medicamentos?</strong> {{ object.medications }}</p>
+            <p class="mb-2"><strong>Alergia a medicamentos?</strong> {% if object.drug_allergy %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Qual alergia?</strong> {{ object.allergy_description }}</p>
+            <p class="mb-2"><strong>Gestante?</strong> {% if object.pregnant %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Sangra muito?</strong> {% if object.excessive_bleeding %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Feridas cicatrizam devagar?</strong> {% if object.slow_healing %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Dificuldade de digestão?</strong> {% if object.digestion_issues %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Problemas no fígado/rins?</strong> {% if object.liver_kidney_problems %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Fuma ou usa drogas?</strong> {% if object.smokes_or_drugs %}Sim{% else %}Não{% endif %}</p>
+            <p class="mb-2"><strong>Informações adicionais:</strong> {{ object.additional_info }}</p>
           </div>
           <div class="card-footer text-center">
             <a href="#" class="btn btn-outline-secondary" onclick="window.history.back()">
               <i class="bi bi-arrow-left me-2"></i>
-              Back
+              Voltar
             </a>
           </div>
         </div>

@@ -6,22 +6,43 @@
 {% block content %}
 <section class="py-5 py-lg-6 bg-surface">
   <div class="container">
-    <h3 class="text-center border-bottom pb-2 mb-4">{{title}}</h3>
+    <h3 class="text-center border-bottom pb-2 mb-4">{{ title }}</h3>
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-7">
         <div class="card shadow-sm">
           <div class="card-body">
-            <p class="mb-0 fs-5"><strong>{{ object.nome }}</strong></p>
+            <p class="mb-2"><strong>ID:</strong> {{ object.pk }}</p>
+            <p class="mb-2"><strong>Paciente:</strong> {{ object.patient.name }}</p>
+            <p class="mb-2"><strong>Data de Criação:</strong> {{ object.created_at|date:"d/m/Y" }}</p>
+            <p class="mb-2"><strong>Valor Total:</strong> R$ {{ object.total_value }}</p>
+            <p class="mb-2"><strong>Status:</strong> {{ object.get_status_display }}</p>
             <hr>
-            <p class="mb-2"><strong>Patient:</strong> {{ object.patient.nome }}</p>
-            <p class="mb-2"><strong>Date:</strong> {{ object.date|date:"d/m/Y" }}</p>
-            <p class="mb-2"><strong>Registered by:</strong> {{ object.created_by.username }}</p>
-            <p class="text-muted mb-0">ID: {{ object.pk }}</p>
+            <h5 class="mt-3">Itens do Plano</h5>
+            {% if object.items.all %}
+              <ul>
+                {% for item in object.items.all %}
+                  <li><strong>Dente:</strong> {{ item.tooth }} | <strong>Procedimento:</strong> {{ item.procedure }} | <strong>Valor:</strong> R$ {{ item.value }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted">Nenhum item cadastrado.</p>
+            {% endif %}
+            <hr>
+            <h5 class="mt-3">Tratamentos Realizados</h5>
+            {% if object.performed_treatments.all %}
+              <ul>
+                {% for perf in object.performed_treatments.all %}
+                  <li><strong>Data:</strong> {{ perf.date|date:"d/m/Y" }} | <strong>Dente:</strong> {{ perf.tooth }} | <strong>Procedimento:</strong> {{ perf.procedure_history|truncatechars:30 }} | <strong>Valor:</strong> R$ {{ perf.value }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted">Nenhum tratamento realizado.</p>
+            {% endif %}
           </div>
           <div class="card-footer text-center">
             <a href="#" class="btn btn-outline-secondary" onclick="window.history.back()">
               <i class="bi bi-arrow-left me-2"></i>
-              Back
+              Voltar
             </a>
           </div>
         </div>
