@@ -13,9 +13,9 @@ urlpatterns = [
     path("detalhes/tratamento-realizado/<int:pk>/", TreatmentPerformedDetailView.as_view(), name="detalhes_tratamento_realizado"),
     path("listar/tratamentos-realizados/", TreatmentPerformedListView.as_view(), name="listar_tratamentos_realizados"),
     path("deletar/tratamento-realizado/<int:pk>/", TreatmentPerformedDeleteView.as_view(), name="deletar_tratamento_realizado"),
-    path("cadastrar/item-de-plano/", PlanItemCreateView.as_view(), name="cadastrar_item_de_plano"),
-    path("editar/item-de-plano/<int:pk>/", PlanItemUpdateView.as_view(), name="editar_item_de_plano"),
-    path("detalhes/item-de-plano/<int:pk>/", PlanItemDetailView.as_view(), name="detalhes_item_de_plano"),
+    path("cadastrar/item-de-plano/", PlanItemCreateView.as_view(), name="cadastrar_item_do_plano"),
+    path("editar/item-de-plano/<int:pk>/", PlanItemUpdateView.as_view(), name="editar_item_do_plano"),
+    path("detalhes/item-de-plano/<int:pk>/", PlanItemDetailView.as_view(), name="detalhes_item_do_plano"),
     path("listar/itens-de-plano/", PlanItemListView.as_view(), name="listar_itens_do_plano"),
-    path("deletar/item-de-plano/<int:pk>/", PlanItemDeleteView.as_view(), name="deletar_item_de_plano"),
+    path("deletar/item-de-plano/<int:pk>/", PlanItemDeleteView.as_view(), name="deletar_item_do_plano"),
 ]
