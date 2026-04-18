@@ -8,38 +8,38 @@ class TermsOfServiceCreateView(CreateView):
     model = TermsOfService
     fields = '__all__'
     template_name = 'documents/form.html'
-    success_url = reverse_lazy('listar_termos_de_atendimento')
+    success_url = reverse_lazy('listar_termos_de_consentimento')
     extra_context = {
-        'title': 'Novo Termo de Atendimento',
-        'button': 'Criar Termo de Atendimento'
+        'title': 'Novo Termo de Consentimento',
+        'button': 'Criar Termo de Consentimento'
         }
     
 class TermsOfServiceUpdateView(UpdateView):
     model = TermsOfService
     fields = '__all__'
     template_name = 'documents/form.html'
-    success_url = reverse_lazy('listar_termos_de_atendimento')
+    success_url = reverse_lazy('listar_termos_de_consentimento')
     extra_context = {
-        'title': 'Editar Termo de Atendimento',
-        'button': 'Atualizar Termo de Atendimento'
+        'title': 'Editar Termo de Consentimento',
+        'button': 'Atualizar Termo de Consentimento'
         }
     
 class TermsOfServiceDetailView(DetailView):
     model = TermsOfService
     template_name = 'documents/detail/termofservice.html'
     extra_context = {
-        'title': 'Detalhes do Termo de Atendimento'}
+        'title': 'Detalhes do Termo de Consentimento'}
 
 class TermsOfServiceListView(ListView):
     model = TermsOfService
     template_name = 'documents/list/termofservice.html'
     extra_context = {
-        'title': 'Lista de Termos de Atendimento'}
+        'title': 'Lista de Termos de Consentimento'}
 
 class TermsOfServiceDeleteView(DeleteView):
     model = TermsOfService
     template_name = 'documents/confirm_delete.html'
-    success_url = reverse_lazy('listar_termos_de_atendimento')
+    success_url = reverse_lazy('listar_termos_de_consentimento')
 
 class ContractCreateView(CreateView):
     model = Contract
