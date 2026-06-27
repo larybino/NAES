@@ -138,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static_gcloud/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
@@ -147,3 +148,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.github.dev',
+    'https://localhost:8000',
+]
+
+
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "index"

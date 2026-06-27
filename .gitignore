@@ -1,3 +1,6 @@
+*.pyc
+**/__pycache__/
 __pycache__
 arquivo.txt
 comandos.txt
+requirements.txt

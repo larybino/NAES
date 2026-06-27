@@ -2,9 +2,9 @@ from django.shortcuts import render
 from .models import Patient, Anamnese
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView
+from website.mixins import BaseLoginMixin, UserOwnedObjectMixin
 
-
-class PatientCreateView(CreateView):
+class PatientCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = Patient
     fields = '__all__'
     template_name = 'pacients/form.html'
@@ -14,7 +14,7 @@ class PatientCreateView(CreateView):
         'button': 'Criar Paciente'
         }
 
-class PatientUpdateView(UpdateView):
+class PatientUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = Patient
     fields = '__all__'
     template_name = 'pacients/form.html'
@@ -24,24 +24,24 @@ class PatientUpdateView(UpdateView):
         'button': 'Atualizar Paciente'
         }
 
-class PatientDetailView(DetailView):
+class PatientDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     model = Patient
     template_name = 'pacients/detail/patients.html'
     extra_context = {
         'title': 'Detalhes do Paciente'}
 
-class PatientListView(ListView):
+class PatientListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = Patient
     template_name = 'pacients/list/patients.html'
     extra_context = {
         'title': 'Lista de Pacientes'}
 
-class PatientDeleteView(DeleteView):
+class PatientDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = Patient
     template_name = 'pacients/confirm_delete.html'
     success_url = reverse_lazy('listar_pacientes')
 
-class AnamneseCreateView(CreateView):
+class AnamneseCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = Anamnese
     fields = '__all__'
     template_name = 'pacients/form.html'
@@ -51,7 +51,7 @@ class AnamneseCreateView(CreateView):
         'button': 'Criar Anamnese'
         }
 
-class AnamneseUpdateView(UpdateView):
+class AnamneseUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = Anamnese
     fields = '__all__'
     template_name = 'pacients/form.html'
@@ -61,20 +61,20 @@ class AnamneseUpdateView(UpdateView):
         'button': 'Atualizar Anamnese'
         }
 
-class AnamneseDetailView(DetailView):
+class AnamneseDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     model = Anamnese
     template_name = 'pacients/detail/anamnese.html'
     extra_context = {
         'title': 'Detalhes da Anamnese'}
 
 
-class AnamneseListView(ListView):
+class AnamneseListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = Anamnese
     template_name = 'pacients/list/anamnese.html'
     extra_context = {
         'title': 'Lista de Anamneses'}
 
-class AnamneseDeleteView(DeleteView):
+class AnamneseDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = Anamnese
     template_name = 'pacients/confirm_delete.html'
     success_url = reverse_lazy('listar_anamneses')

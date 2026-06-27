@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .models import TreatmentPerformed, TreatmentPlan, PlanItem
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
+from website.mixins import BaseLoginMixin, UserOwnedObjectMixin
 
-class TreatmentPlanCreateView(CreateView):
+class TreatmentPlanCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = TreatmentPlan
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -13,7 +14,7 @@ class TreatmentPlanCreateView(CreateView):
         'button': 'Criar Plano de Tratamento'
         }
     
-class TreatmentPlanUpdateView(UpdateView):
+class TreatmentPlanUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = TreatmentPlan
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -23,24 +24,24 @@ class TreatmentPlanUpdateView(UpdateView):
         'button': 'Atualizar Plano de Tratamento'
         }
     
-class TreatmentPlanDetailView(DetailView):
+class TreatmentPlanDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     model = TreatmentPlan
     template_name = 'treatments/detail/treatmentplan.html'   
     extra_context = {
         'title': 'Detalhes do Plano de Tratamento'}
 
-class TreatmentPlanListView(ListView):
+class TreatmentPlanListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = TreatmentPlan
     template_name = 'treatments/list/treatmentplan.html'
     extra_context = {
         'title': 'Lista de Planos de Tratamento'}
 
-class TreatmentPlanDeleteView(DeleteView):
+class TreatmentPlanDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = TreatmentPlan
     template_name = 'treatments/form.html'
     success_url = reverse_lazy('listar_planos_de_tratamento')
 
-class TreatmentPerformedCreateView(CreateView):
+class TreatmentPerformedCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = TreatmentPerformed
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -50,7 +51,7 @@ class TreatmentPerformedCreateView(CreateView):
         'button': 'Criar Tratamento Realizado'
         }
 
-class TreatmentPerformedUpdateView(UpdateView):
+class TreatmentPerformedUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = TreatmentPerformed
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -60,24 +61,24 @@ class TreatmentPerformedUpdateView(UpdateView):
         'button': 'Atualizar Tratamento Realizado'
         }   
 
-class TreatmentPerformedDetailView(DetailView):
+class TreatmentPerformedDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     model = TreatmentPerformed
     template_name = 'treatments/detail/treatmentperfomed.html'
     extra_context = {
         'title': 'Detalhes do Tratamento Realizado'}
 
-class TreatmentPerformedListView(ListView):
+class TreatmentPerformedListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = TreatmentPerformed
     template_name = 'treatments/list/treatmentperfomed.html'
     extra_context = {
         'title': 'Lista de Tratamentos Realizados'}
 
-class TreatmentPerformedDeleteView(DeleteView):
+class TreatmentPerformedDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = TreatmentPerformed
     template_name = 'treatments/confirm_delete.html'
     success_url = reverse_lazy('listar_tratamentos_realizados')
 
-class PlanItemCreateView(CreateView):
+class PlanItemCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = PlanItem
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -87,7 +88,7 @@ class PlanItemCreateView(CreateView):
         'button': 'Criar Item do Plano'
         }
     
-class PlanItemUpdateView(UpdateView):
+class PlanItemUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = PlanItem
     fields = '__all__'
     template_name = 'treatments/form.html'
@@ -97,20 +98,20 @@ class PlanItemUpdateView(UpdateView):
         'button': 'Atualizar Item do Plano'
         }
     
-class PlanItemDetailView(DetailView):
+class PlanItemDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     model = PlanItem
     template_name = 'treatments/detail/planitem.html'
     extra_context = {
         'title': 'Detalhes do Item do Plano'}
 
-class PlanItemListView(ListView):
+class PlanItemListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = PlanItem
     template_name = 'treatments/list/planitem.html'
     extra_context = {
         'title': 'Lista de Itens do Plano'
     }
 
-class PlanItemDeleteView(DeleteView):
+class PlanItemDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = PlanItem
     template_name = 'treatments/confirm_delete.html'
     success_url = reverse_lazy('listar_itens_do_plano')
