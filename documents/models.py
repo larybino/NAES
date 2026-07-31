@@ -1,8 +1,18 @@
 from django.db import models
+from django.conf import settings
 
 from pacients.models import Patient
 
 class TermsOfService(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="terms_of_service",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE, related_name="attendance_term",
         verbose_name="Paciente"
@@ -30,6 +40,15 @@ class TermsOfService(models.Model):
 
 
 class Contract(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="contracts",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     patient = models.ForeignKey(
         Patient, on_delete=models.CASCADE, related_name="contract",
         verbose_name="Paciente"

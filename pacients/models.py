@@ -1,6 +1,16 @@
 from django.db import models
+from django.conf import settings
 
 class Patient (models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="patients",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     name = models.CharField("Nome", max_length=100)
     birth_date = models.DateField("Data de Nascimento")
     cpf = models.CharField("CPF", max_length=14, unique=True)
@@ -22,6 +32,15 @@ class Patient (models.Model):
         return self.name
     
 class Anamnese(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="anamneses",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     patient = models.OneToOneField(Patient, on_delete=models.CASCADE, verbose_name="Paciente")
     brushings_per_day = models.PositiveSmallIntegerField("Escovações por dia", default=0)
     guided_brushing = models.BooleanField("Escovação orientada", default=False)

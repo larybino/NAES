@@ -1,7 +1,17 @@
 from django.db import models
+from django.conf import settings
 from pacients.models import Patient
 
 class TreatmentPlan(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="treatment_plans",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     STATUS_CHOICES = [
         ("draft", "Em elaboração"),
         ("approved", "Aprovado"),
@@ -35,6 +45,15 @@ class TreatmentPlan(models.Model):
 
 
 class PlanItem(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="plan_items",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     treatment_plan = models.ForeignKey(
         TreatmentPlan, on_delete=models.CASCADE, related_name="items",
         verbose_name="Plano de Tratamento"
@@ -52,6 +71,15 @@ class PlanItem(models.Model):
 
 
 class TreatmentPerformed(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="treatments_performed",
+        verbose_name="Usuario",
+        null=True,
+        blank=True,
+        editable=False,
+    )
     PAYMENT_CHOICES = [
         ("pix", "PIX"),
         ("cash", "Dinheiro"),
