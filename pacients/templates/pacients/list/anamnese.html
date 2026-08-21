@@ -1,13 +1,9 @@
-{% extends "website/base.html" %}
-
-{% block hero %}
-{% endblock hero %}
-
-{% block content %}
+{% extends "website/base.html" %} {% block hero %} {% endblock hero %} {% block
+content %}
 <section class="py-5 py-lg-6 bg-surface">
   <div class="container">
     <h3 class="text-center border-bottom pb-2 mb-4">
-        {{ title }}
+      {{ title }}
       <span class="float-end">
         <a href="{% url 'cadastrar_anamnese' %}" class="btn btn-success btn-sm">
           <i class="bi bi-plus-lg"></i>
@@ -36,25 +32,50 @@
               <td>{{ anamnese.brushings_per_day }}</td>
               <td>{% if anamnese.uses_floss %}Sim{% else %}Não{% endif %}</td>
               <td>{{ anamnese.last_dental_visit|date:'d/m/Y' }}</td>
-              <td>{% if anamnese.uses_medication %}Sim{% else %}Não{% endif %}</td>
+              <td>
+                {% if anamnese.uses_medication %}Sim{% else %}Não{% endif %}
+              </td>
               <td>{% if anamnese.drug_allergy %}Sim{% else %}Não{% endif %}</td>
-              <td>{% if anamnese.smokes_or_drugs %}Sim{% else %}Não{% endif %}</td>
+              <td>
+                {% if anamnese.smokes_or_drugs %}Sim{% else %}Não{% endif %}
+              </td>
               <td class="text-center">
                 <div class="dropdown">
                   <a href="#" data-bs-toggle="dropdown">
                     <i class="bi bi-three-dots-vertical"></i>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'detalhes_anamnese' anamnese.pk %}"><i class="bi bi-zoom-in me-2"></i>Visualizar</a></li>
-                    <li><a class="dropdown-item" href="{% url 'editar_anamnese' anamnese.pk %}"><i class="bi bi-pencil-square text-primary me-2"></i>Editar</a></li>
-                    <li><a class="dropdown-item" href="{% url 'deletar_anamnese' anamnese.pk %}"><i class="bi bi-trash text-danger me-2"></i>Excluir</a></li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'detalhes_anamnese' anamnese.pk %}"
+                        ><i class="bi bi-zoom-in me-2"></i>Visualizar</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'editar_anamnese' anamnese.pk %}"
+                        ><i class="bi bi-pencil-square text-primary me-2"></i
+                        >Editar</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="{% url 'deletar_anamnese' anamnese.pk %}"
+                        ><i class="bi bi-trash text-danger me-2"></i>Excluir</a
+                      >
+                    </li>
                   </ul>
                 </div>
               </td>
             </tr>
             {% empty %}
             <tr>
-              <td colspan="100%" class="text-center">Nenhum registro encontrado.</td>
+              <td colspan="100%" class="text-center">
+                Nenhum registro encontrado.
+              </td>
             </tr>
             {% endfor %}
           </tbody>
@@ -63,4 +84,37 @@
     </div>
   </div>
 </section>
-{% endblock content %}
+{% if is_paginated %}
+<div class="container my-3">
+  <nav aria-label="Paginação">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+          >Anterior</a
+        >
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">Anterior</span>
+      </li>
+      {% endif %} {% for num in page_obj.paginator.page_range %} {% if num ==
+      page_obj.number %}
+      <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+      {% else %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+      </li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+          >Próximo</a
+        >
+      </li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">Próximo</span></li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+{% endif %} {% endblock content %}

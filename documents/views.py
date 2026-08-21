@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Contract, TermsOfService
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
-from website.mixins import BaseLoginMixin, UserOwnedObjectMixin
+from website.mixins import BaseLoginMixin, UserOwnedObjectMixin, GroupRequiredMixin
 
 # Create your views here.
 
@@ -43,7 +43,7 @@ class TermsOfServiceDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView)
     template_name = 'documents/confirm_delete.html'
     success_url = reverse_lazy('listar_termos_de_consentimento')
 
-class ContractCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
+class ContractCreateView(GroupRequiredMixin, BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = Contract
     fields = '__all__'
     template_name = 'documents/form.html'
@@ -52,6 +52,7 @@ class ContractCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
         'title': 'Novo Contrato',
         'button': 'Criar Contrato'
         }
+    group_required = ('staff',)
     
 class ContractUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = Contract
@@ -75,6 +76,12 @@ class ContractListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     extra_context = {
         'title': 'Lista de Contratos'
     }
+
+    paginate_by = 10
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related('patient')
 
 class ContractDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = Contract

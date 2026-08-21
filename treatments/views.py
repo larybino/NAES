@@ -33,8 +33,13 @@ class TreatmentPlanDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
 class TreatmentPlanListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = TreatmentPlan
     template_name = 'treatments/list/treatmentplan.html'
+    paginate_by = 10
     extra_context = {
         'title': 'Lista de Planos de Tratamento'}
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related('patient')
 
 class TreatmentPlanDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = TreatmentPlan
@@ -70,8 +75,13 @@ class TreatmentPerformedDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailV
 class TreatmentPerformedListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = TreatmentPerformed
     template_name = 'treatments/list/treatmentperfomed.html'
+    paginate_by = 10
     extra_context = {
         'title': 'Lista de Tratamentos Realizados'}
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related('treatment_plan__patient')
 
 class TreatmentPerformedDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = TreatmentPerformed
@@ -107,9 +117,14 @@ class PlanItemDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
 class PlanItemListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = PlanItem
     template_name = 'treatments/list/planitem.html'
+    paginate_by = 10
     extra_context = {
         'title': 'Lista de Itens do Plano'
     }
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related('treatment_plan__patient')
 
 class PlanItemDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = PlanItem

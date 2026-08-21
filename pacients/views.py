@@ -33,6 +33,7 @@ class PatientDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
 class PatientListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = Patient
     template_name = 'pacients/list/patients.html'
+    paginate_by = 10
     extra_context = {
         'title': 'Lista de Pacientes'}
 
@@ -71,8 +72,13 @@ class AnamneseDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
 class AnamneseListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     model = Anamnese
     template_name = 'pacients/list/anamnese.html'
+    paginate_by = 10
     extra_context = {
         'title': 'Lista de Anamneses'}
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.select_related('patient')
 
 class AnamneseDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = Anamnese

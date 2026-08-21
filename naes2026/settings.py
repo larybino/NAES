@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'documents.apps.DocumentsConfig',
     'crispy_forms',
     'crispy_bootstrap5',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -158,3 +160,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
+
+# Django Debug Toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
