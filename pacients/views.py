@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from .models import Patient, Anamnese
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView
+from django_filters.views import FilterView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
 from website.mixins import BaseLoginMixin, UserOwnedObjectMixin
+
+from .filters import AnamneseFilter, PatientFilter
+from .forms import PatientForm
 
 class PatientCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = Patient
-    fields = '__all__'
+    form_class = PatientForm
     template_name = 'pacients/form.html'
     success_url = reverse_lazy('listar_pacientes')
     extra_context = {
@@ -16,7 +20,7 @@ class PatientCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
 
 class PatientUpdateView(BaseLoginMixin, UserOwnedObjectMixin, UpdateView):
     model = Patient
-    fields = '__all__'
+    form_class = PatientForm
     template_name = 'pacients/form.html'
     success_url = reverse_lazy('listar_pacientes')
     extra_context = {
@@ -30,10 +34,12 @@ class PatientDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     extra_context = {
         'title': 'Detalhes do Paciente'}
 
-class PatientListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class PatientListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = Patient
     template_name = 'pacients/list/patients.html'
     paginate_by = 10
+    ordering = ["name"]
+    filterset_class = PatientFilter
     extra_context = {
         'title': 'Lista de Pacientes'}
 
@@ -69,10 +75,12 @@ class AnamneseDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
         'title': 'Detalhes da Anamnese'}
 
 
-class AnamneseListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class AnamneseListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = Anamnese
     template_name = 'pacients/list/anamnese.html'
     paginate_by = 10
+    ordering = ["patient__name"]
+    filterset_class = AnamneseFilter
     extra_context = {
         'title': 'Lista de Anamneses'}
     

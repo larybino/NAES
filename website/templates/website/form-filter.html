@@ -1,0 +1,164 @@
+{% load crispy_forms_tags %}
+<style>
+.filter-panel {
+    margin: 0 0 1.75rem;
+    padding: 1rem 1.15rem 1.15rem;
+    background: #fff;
+    border: 1px solid rgba(21, 101, 168, 0.12);
+    border-left: 4px solid var(--bs-primary);
+    border-radius: 0.6rem;
+    box-shadow: 0 4px 18px rgba(21, 101, 168, 0.07);
+}
+
+.filter-panel__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.85rem;
+}
+
+.filter-panel__heading i {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    color: var(--bs-primary);
+    background: var(--bs-primary-bg-subtle);
+    border-radius: 0.4rem;
+}
+
+.filter-panel h5 {
+    margin: 0;
+    color: var(--bs-primary-text-emphasis);
+    font-family: "Lora", serif;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.filter-panel form.row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.filter-panel form.row div[id*="div_id"] {
+    flex: none;
+    width: auto;
+    min-width: 0;
+    margin-bottom: 0.15rem !important;
+}
+
+.filter-panel .form-label {
+    margin-bottom: 0.3rem;
+    color: var(--bs-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.filter-panel fieldset .form-label {
+    font-size: 0.75rem;
+}
+
+.filter-panel form.row fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.35rem;
+    min-width: 0;
+    border: 0;
+    padding: 0;
+}
+
+.filter-panel form.row fieldset .form-label {
+    flex: 0 0 100%;
+}
+
+.filter-panel form.row fieldset input {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.filter-panel .form-control,
+.filter-panel .form-select {
+    min-height: 2.35rem;
+    border-color: rgba(21, 101, 168, 0.18);
+    border-radius: 0.4rem;
+    background: #fbfdff;
+    color: var(--bs-body-color);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.filter-panel .form-control:focus,
+.filter-panel .form-select:focus {
+    border-color: var(--bs-primary);
+    background: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(21, 101, 168, 0.12);
+}
+
+.filter-panel__actions {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    padding-bottom: 0.15rem;
+}
+
+.filter-panel__actions .btn {
+    min-height: 2.35rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .filter-panel {
+        padding: 0.9rem;
+    }
+
+    .filter-panel form.row div[id*="div_id"] {
+        grid-column: 1 / -1;
+        min-width: 100%;
+    }
+
+    .filter-panel form.row fieldset input {
+        flex-basis: calc(50% - 0.35rem);
+    }
+
+    .filter-panel__actions {
+        width: 100%;
+    }
+
+    .filter-panel__actions .btn {
+        flex: 1 1 50%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .filter-panel form.row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+</style>
+<section class="filter-panel" aria-labelledby="filter-panel-title">
+  <div class="filter-panel__heading">
+    <i class="bi bi-funnel" aria-hidden="true"></i>
+    <h5 id="filter-panel-title">Filtros</h5>
+  </div>
+  <form class="row gy-2 gx-3 align-items-end" action="" method="get">
+    {{ filter.form|crispy }}
+    <div class="filter-panel__actions">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-search me-1"></i> Filtrar
+      </button>
+      <a href="{{ request.path }}" class="btn btn-outline-secondary">
+        <i class="bi bi-x-lg me-1"></i> Limpar
+      </a>
+    </div>
+  </form>
+</section>

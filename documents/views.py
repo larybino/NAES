@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import Contract, TermsOfService
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
+from django_filters.views import FilterView
+from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 from website.mixins import BaseLoginMixin, UserOwnedObjectMixin, GroupRequiredMixin
+
+from .filters import ContractFilter, TermsOfServiceFilter
 
 # Create your views here.
 
@@ -32,11 +35,17 @@ class TermsOfServiceDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView)
     extra_context = {
         'title': 'Detalhes do Termo de Consentimento'}
 
-class TermsOfServiceListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class TermsOfServiceListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = TermsOfService
     template_name = 'documents/list/termofservice.html'
     extra_context = {
         'title': 'Lista de Termos de Consentimento'}
+    paginate_by = 10
+    ordering = ['-signature_date', 'patient__name']
+    filterset_class = TermsOfServiceFilter
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('patient')
 
 class TermsOfServiceDeleteView(BaseLoginMixin, UserOwnedObjectMixin, DeleteView):
     model = TermsOfService
@@ -70,7 +79,7 @@ class ContractDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     extra_context = {
         'title': 'Detalhes do Contrato'}
 
-class ContractListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class ContractListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = Contract
     template_name = 'documents/list/contract.html'
     extra_context = {
@@ -78,6 +87,8 @@ class ContractListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
     }
 
     paginate_by = 10
+    ordering = ['-signature_date', 'patient__name']
+    filterset_class = ContractFilter
 
     def get_queryset(self):
         queryset = super().get_queryset()

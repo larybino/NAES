@@ -1,5 +1,4 @@
-{% extends "website/base.html" %} {% load crispy_forms_tags %} {% block content
-%}
+{% extends "website/base.html" %} {% load crispy_forms_tags %} {% block content %}
 <section class="py-5 py-lg-6 bg-surface">
   <div class="container">
     <h2 class="text-center border-bottom pb-2 mb-4">
@@ -7,7 +6,7 @@
     </h2>
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5">
-        <form method="post" class="btnLoading card p-4 shadow-sm">
+        <form method="post" action="{% url 'login' %}" class="btnLoading card p-4 shadow-sm">
           {% csrf_token %} {{ form|crispy }}
           <button type="submit" class="btn btn-primary w-100 mt-2">
             {{ botao|default:"Entrar" }}

@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import TreatmentPerformed, TreatmentPlan, PlanItem
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
+from django_filters.views import FilterView
+from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 from website.mixins import BaseLoginMixin, UserOwnedObjectMixin
+
+from .filters import PlanItemFilter, TreatmentPerformedFilter, TreatmentPlanFilter
 
 class TreatmentPlanCreateView(BaseLoginMixin, UserOwnedObjectMixin, CreateView):
     model = TreatmentPlan
@@ -30,10 +33,12 @@ class TreatmentPlanDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     extra_context = {
         'title': 'Detalhes do Plano de Tratamento'}
 
-class TreatmentPlanListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class TreatmentPlanListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = TreatmentPlan
     template_name = 'treatments/list/treatmentplan.html'
     paginate_by = 10
+    ordering = ["-created_at", "patient__name"]
+    filterset_class = TreatmentPlanFilter
     extra_context = {
         'title': 'Lista de Planos de Tratamento'}
     
@@ -72,10 +77,12 @@ class TreatmentPerformedDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailV
     extra_context = {
         'title': 'Detalhes do Tratamento Realizado'}
 
-class TreatmentPerformedListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class TreatmentPerformedListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = TreatmentPerformed
     template_name = 'treatments/list/treatmentperfomed.html'
     paginate_by = 10
+    ordering = ["-date", "treatment_plan__patient__name"]
+    filterset_class = TreatmentPerformedFilter
     extra_context = {
         'title': 'Lista de Tratamentos Realizados'}
 
@@ -114,10 +121,12 @@ class PlanItemDetailView(BaseLoginMixin, UserOwnedObjectMixin, DetailView):
     extra_context = {
         'title': 'Detalhes do Item do Plano'}
 
-class PlanItemListView(BaseLoginMixin, UserOwnedObjectMixin, ListView):
+class PlanItemListView(BaseLoginMixin, UserOwnedObjectMixin, FilterView):
     model = PlanItem
     template_name = 'treatments/list/planitem.html'
     paginate_by = 10
+    ordering = ["treatment_plan__patient__name", "tooth"]
+    filterset_class = PlanItemFilter
     extra_context = {
         'title': 'Lista de Itens do Plano'
     }

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'documents.apps.DocumentsConfig',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_filters',
     'debug_toolbar',
 ]
 
@@ -154,7 +155,9 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.github.dev',
+    'http://localhost:8000',
     'https://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 
