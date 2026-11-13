@@ -1,0 +1,26 @@
+{% extends 'website/base.html' %}
+{% block title %}Assistente IA{% endblock %}
+{% block content %}
+<section class="py-5"><div class="container"><div class="row justify-content-center"><div class="col-xl-9"><div class="d-flex justify-content-between align-items-center mb-3"><div><span class="section-label">Janela de contexto: 5 mensagens</span><h1 class="mb-1">Assistente do SorriSys</h1><p class="text-secondary mb-0">Pergunte sobre o sistema. Nao envie dados clinicos identificaveis.</p></div><a href="{% url 'ia_meu_consumo' %}" class="btn btn-outline-primary"><i class="bi bi-bar-chart me-1"></i>Meu consumo</a></div><div id="assistant-messages" class="card card-body mb-3" style="min-height: 360px; max-height: 560px; overflow-y: auto;">{% for message in messages %}<div class="mb-3 {% if message.role == 'user' %}text-end{% endif %}"><span class="badge text-bg-{% if message.role == 'user' %}primary{% else %}light text-dark{% endif %}">{{ message.get_role_display }}</span><div class="mt-1">{{ message.content|linebreaksbr }}</div></div>{% empty %}<p class="text-secondary" id="assistant-empty">Comece fazendo uma pergunta.</p>{% endfor %}</div><form id="assistant-form" class="card card-body" method="post">{% csrf_token %}<label class="form-label" for="question">Sua pergunta</label><textarea id="question" name="question" class="form-control" rows="3" maxlength="4000" required></textarea><div class="d-flex justify-content-between align-items-center mt-3"><span id="assistant-status" class="small text-secondary"></span><button class="btn btn-primary" type="submit"><i class="bi bi-send me-1"></i>Enviar</button></div></form></div></div></div></section>
+<script>
+(() => {
+  const form = document.getElementById('assistant-form');
+  const messages = document.getElementById('assistant-messages');
+  const status = document.getElementById('assistant-status');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.textContent = 'Consultando...';
+    const data = new FormData(form);
+    try {
+      const response = await fetch('{% url "ia_perguntar" %}', {method: 'POST', headers: {'X-CSRFToken': data.get('csrfmiddlewaretoken'), 'X-Requested-With': 'XMLHttpRequest'}, body: data});
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || 'Nao foi possivel consultar a IA.');
+      document.getElementById('assistant-empty')?.remove();
+      messages.insertAdjacentHTML('beforeend', `<div class="mb-3 text-end"><span class="badge text-bg-primary">Usuario</span><div class="mt-1"></div></div>`);
+      messages.insertAdjacentHTML('beforeend', `<div class="mb-3"><span class="badge text-bg-light text-dark">Assistente</span><div class="mt-1">${payload.answer_html}</div></div>`);
+      form.reset(); messages.scrollTop = messages.scrollHeight; status.textContent = `${payload.tokens} tokens utilizados`;
+    } catch (error) { status.textContent = error.message; }
+  });
+})();
+</script>
+{% endblock %}

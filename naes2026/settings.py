@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-89-9ta=@&@$53*n!o&(2p@07k51kywvee*d+z+9n2abl)6+29s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'false').lower() in {'1', 'true', 'yes'}
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pacients.apps.PacientsConfig',
     'treatments.apps.TreatmentsConfig',
     'documents.apps.DocumentsConfig',
+    'ia.apps.IaConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_filters',

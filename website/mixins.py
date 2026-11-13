@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -78,4 +79,18 @@ class UserOwnedObjectMixin:
         if user_field and not getattr(form.instance, user_field, None):
             setattr(form.instance, user_field, self.request.user)
 
-        return super().form_valid(form)
+        is_create = form.instance.pk is None
+        response = super().form_valid(form)
+        action = "cadastrado" if is_create else "alterado"
+        messages.success(
+            self.request,
+            f"{self.object._meta.verbose_name.capitalize()} {action} com sucesso.",
+        )
+        return response
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        verbose_name = self.object._meta.verbose_name.capitalize()
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, f"{verbose_name} excluído com sucesso.")
+        return response

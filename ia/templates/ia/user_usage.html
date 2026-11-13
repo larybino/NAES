@@ -1,0 +1,5 @@
+{% extends 'website/base.html' %}
+{% block title %}IA por usuario{% endblock %}
+{% block content %}
+<section class="py-5"><div class="container"><h1>IA por usuario</h1><p class="text-secondary">Consumo mensal separado por usuario.</p><div class="table-responsive"><table class="table table-hover"><thead><tr><th>Usuario</th><th>Mes</th><th>Uso</th><th>Limite</th><th>Restante</th></tr></thead><tbody>{% for quota in quotas %}<tr><td>{{ quota.user }}</td><td>{{ quota.month|date:'m/Y' }}</td><td>{{ quota.tokens_used }}</td><td>{{ quota.token_limit }}</td><td>{{ quota.remaining_tokens }}</td></tr>{% empty %}<tr><td colspan="5">Nenhum consumo registrado.</td></tr>{% endfor %}</tbody></table></div></div></section>
+{% endblock %}

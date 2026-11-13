@@ -1,0 +1,5 @@
+{% extends 'website/base.html' %}
+{% block title %}Meu consumo de IA{% endblock %}
+{% block content %}
+<section class="py-5"><div class="container"><h1>Meu consumo</h1><div class="card card-body mb-4"><div class="progress" role="progressbar" aria-label="Consumo mensal"><div class="progress-bar" style="width: {% widthratio quota.tokens_used quota.token_limit 100 %}%">{{ quota.tokens_used }} tokens</div></div><p class="small text-secondary mt-2 mb-0">Limite mensal: {{ quota.token_limit }}. Restante: {{ quota.remaining_tokens }}.</p></div><h2 class="h4">Ultimas chamadas</h2><div class="table-responsive"><table class="table"><thead><tr><th>Data</th><th>Status</th><th>Tokens</th></tr></thead><tbody>{% for audit in audits %}<tr><td>{{ audit.created_at|date:'d/m/Y H:i' }}</td><td>{{ audit.get_status_display }}</td><td>{{ audit.tokens_used }}</td></tr>{% empty %}<tr><td colspan="3">Nenhuma chamada ainda.</td></tr>{% endfor %}</tbody></table></div></div></section>
+{% endblock %}

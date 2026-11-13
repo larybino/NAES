@@ -1,0 +1,12 @@
+{% extends 'website/base.html' %}
+{% block title %}IA{% endblock %}
+{% block content %}
+<section class="py-5"><div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4"><div><span class="section-label">Inteligencia assistida</span><h1 class="mb-1">Central de IA</h1><p class="text-secondary mb-0">Configure, acompanhe e use o assistente com controle de consumo.</p></div><a class="btn btn-primary" href="{% url 'ia_assistente' %}"><i class="bi bi-chat-dots me-1"></i>Abrir assistente</a></div>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>Cota deste mes</h5><p class="display-6 mb-1">{{ quota.tokens_used }} / {{ quota.token_limit }}</p><p class="text-secondary mb-0">tokens utilizados</p></div></div></div>
+    <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>Configuracao</h5><p class="mb-1">{% if configuration %}{{ configuration.model }}{% else %}Nao configurada{% endif %}</p><a href="{% url 'ia_configuracao' %}">Gerenciar configuracao</a></div></div></div>
+    <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>Acompanhamento</h5><a class="d-block" href="{% url 'ia_meu_consumo' %}">Meu consumo</a><a class="d-block" href="{% url 'ia_requisicoes' %}">Requisicoes e auditoria</a></div></div></div>
+  </div>
+</div></section>
+{% endblock %}

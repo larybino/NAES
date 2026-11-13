@@ -10,10 +10,18 @@ class IndexView(TemplateView):
         from pacients.models import Patient
         from treatments.models import TreatmentPlan
 
-        context['recent_patients'] = Patient.objects.order_by('-pk')[:5]
-        context['recent_plans'] = (
-            TreatmentPlan.objects.select_related('patient').order_by('-created_at')[:5]
-        )
+        if self.request.user.is_authenticated:
+            context['recent_patients'] = Patient.objects.filter(
+                user=self.request.user
+            ).order_by('-pk')[:5]
+            context['recent_plans'] = (
+                TreatmentPlan.objects.filter(user=self.request.user)
+                .select_related('patient')
+                .order_by('-created_at')[:5]
+            )
+        else:
+            context['recent_patients'] = Patient.objects.none()
+            context['recent_plans'] = TreatmentPlan.objects.none()
         return context
 
 

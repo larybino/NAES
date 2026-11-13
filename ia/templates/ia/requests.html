@@ -1,0 +1,5 @@
+{% extends 'website/base.html' %}
+{% block title %}Requisicoes de IA{% endblock %}
+{% block content %}
+<section class="py-5"><div class="container"><h1>Requisicoes de IA</h1><p class="text-secondary">Auditoria das chamadas realizadas pelo assistente e pelos testes de conexao.</p><div class="table-responsive"><table class="table table-hover align-middle"><thead><tr><th>Data</th><th>Usuario</th><th>Status</th><th>Tokens</th><th>Solicitacao</th></tr></thead><tbody>{% for item in requests %}<tr><td>{{ item.created_at|date:'d/m/Y H:i' }}</td><td>{{ item.user|default:'-' }}</td><td><span class="badge text-bg-{% if item.status == 'success' %}success{% else %}danger{% endif %}">{{ item.get_status_display }}</span></td><td>{{ item.tokens_used }}</td><td>{{ item.request_text|truncatechars:90 }}</td></tr>{% empty %}<tr><td colspan="5">Nenhuma requisicao registrada.</td></tr>{% endfor %}</tbody></table></div>{% include 'website/paginacao.html' %}</div></section>
+{% endblock %}

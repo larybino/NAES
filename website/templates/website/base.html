@@ -16,6 +16,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
     />
     <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
@@ -683,6 +687,23 @@
                 </li>
               </ul>
             </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-stars me-1"></i>IA
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'ia_assistente' %}"><i class="bi bi-chat-dots me-2"></i>Assistente</a></li>
+                <li><a class="dropdown-item" href="{% url 'ia_meu_consumo' %}"><i class="bi bi-bar-chart me-2"></i>Meu consumo</a></li>
+                <li><a class="dropdown-item" href="{% url 'ia_requisicoes' %}"><i class="bi bi-list-check me-2"></i>Requisicoes</a></li>
+                {% if request.user.is_staff %}
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{% url 'ia_configuracao' %}"><i class="bi bi-sliders me-2"></i>Configuracao</a></li>
+                <li><a class="dropdown-item" href="{% url 'ia_por_usuario' %}"><i class="bi bi-people me-2"></i>IA por usuario</a></li>
+                {% endif %}
+              </ul>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a
                 class="nav-link {% block nav_sobre %}{% endblock %}"
@@ -750,6 +771,17 @@
         </div>
       </div>
     </nav>
+
+    {% if messages %}
+    <div class="container mt-3" aria-live="polite">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
     {% block content %}{% endblock %}
 
@@ -827,6 +859,19 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="{% static 'js/mascaras.js' %}"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+      $(function () {
+        $(".js-data-table").DataTable({
+          paging: false,
+          searching: false,
+          info: false,
+          ordering: false,
+          language: { emptyTable: "Nenhum registro encontrado." },
+        });
+      });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
